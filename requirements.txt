@@ -1,3 +1,4 @@
+numpy==1.15.2
+opencv-python==3.4.3.18
 pep8==1.7.1
-pylint==2.1.1
 Pillow==5.3.0

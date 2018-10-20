@@ -1,78 +1,54 @@
-from PIL import Image
-import random
+import os
+
+from random import Random
+
+import cv2
+import numpy as np
 
 
-class Canvas(object):
-    def __init__(self, width, height):
-        self._image = Image.new('L', (width, height))
-
-    def draw_point(self, x, y, value=255):
-        if isinstance(value, float):
-            value = max(0, int(value * 256) - 1)
-        assert 0 <= value <= 255
-        if 0 <= x < self._image.width and 0 <= y < self._image.height:
-            self._image.putpixel((int(x), int(y)), value)
-
-    def draw_line(self, x0, y0, x1, y1):
-        dx = x1 - x0
-        dy = y1 - y0
-        for x in range(x0, x1 + 1):
-            y = y0 + dy * (x - x0) / dx
-            self.draw_point(x, y)
-
-    def draw_circle(self, x0, y0, radius):
-        x = radius-1
-        y = 0
-        dx = 1
-        dy = 1
-        err = dx - (radius << 1)
-
-        while x >= y:
-            self.draw_point(x0 + x, y0 + y)
-            self.draw_point(x0 + y, y0 + x)
-            self.draw_point(x0 - y, y0 + x)
-            self.draw_point(x0 - x, y0 + y)
-            self.draw_point(x0 - x, y0 - y)
-            self.draw_point(x0 - y, y0 - x)
-            self.draw_point(x0 + y, y0 - x)
-            self.draw_point(x0 + x, y0 - y)
-
-            if err <= 0:
-                y += 1
-                err += dy
-                dy += 2
-
-            if err > 0:
-                x -= 1
-                dx += 2
-                err += dx - (radius << 1)
-
-    def save(self, file_name):
-        self._image.save('{}.bmp'.format(file_name))
+def generate_circle_coords(width, height, random, padding=1):
+    upper_radius = min(width, height) / 2
+    radius = np.float32(random.uniform(10.0, upper_radius))
+    margin = 2 * radius + padding
+    shift = padding + radius
+    center_x = np.float32(shift + random.uniform(0, width - margin))
+    center_y = np.float32(shift + random.uniform(0, height - margin))
+    return center_x, center_y, radius
 
 
-class ShapeGenerator(object):
+def generate_circles(width, height, count=1, seed=None):
+    random = Random()
+    random.seed(seed)
 
-    def __init__(self, field_size=None, seed=None):
-        self._random = random.Random()
-        self._random.seed(seed)
-        self._width, self._height = field_size or (200, 200)
+    matrix = np.zeros((height, width), np.float32)
+    source = cv2.cvtColor(matrix, cv2.COLOR_GRAY2BGR)
 
-    def get_random_cirle(self):
-        canvas = Canvas(self._width, self._height)
-        max_rad = min(self._width, self._height) / 2
-        rad = self._random.randint(1, max_rad)
-        padding = 2 * rad
-        x0 = self._random.randint(0, self._width - padding)
-        y0 = self._random.randint(0, self._width - padding)
-        canvas.draw_circle(rad + x0, rad + y0, rad)
-        return canvas
+    for i in range(count):
+        image = source.copy()
+        x, y, r = generate_circle_coords(width, height, random)
+        yield cv2.circle(image, (x, y), r, (255, 255, 255))
+
+
+def save_shapes(path, generator):
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    for idx, image in enumerate(generator):
+        cv2.imwrite(os.path.join(path, '{}.bmp'.format(idx)), image)
 
 
 def main():
-    generator = ShapeGenerator(seed=42)
-    circle = generator.get_random_cirle()
-    circle.save('circle')
+    path = 'images'
+    samples_per_type = 10
+    width, heigth = 200, 200
+
+    shapes = [
+        ('circles', generate_circles(width, heigth, samples_per_type, 42)),
+    ]
+
+    for sub_path, generator in shapes:
+        save_shapes(os.path.join(path, sub_path), generator)
 
 
 if __name__ == '__main__':
