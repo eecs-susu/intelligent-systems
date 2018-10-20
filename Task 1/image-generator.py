@@ -161,9 +161,40 @@ def generate_isosceles_triangles(width, height, count=1, seed=None):
             x1, y1 = generate_point(width, height, random)
             dx, dy = x1 - x0, y1 - y0
             xM, yM = (x0 + x1) / 2, (y0 + y1) / 2
-            mult = random.random()
-            x2 = np.float32(xM + dy)
-            y2 = np.float32(yM - dx)
+            mult = 1.1
+            x2 = np.float32(xM + dy * mult)
+            y2 = np.float32(yM - dx * mult)
+        image = cv2.line(image, (x0, y0), (x1, y1), COLOR_WHITE)
+        image = cv2.line(image, (x2, y2), (x1, y1), COLOR_WHITE)
+        yield cv2.line(image, (x0, y0), (x2, y2), COLOR_WHITE,
+                       lineType=cv2.LINE_AA)
+
+
+def generate_equilateral_triangles(width, height, count=1, seed=None):
+    random = Random()
+    random.seed(seed)
+
+    matrix = np.zeros((height, width), np.float32)
+    source = cv2.cvtColor(matrix, cv2.COLOR_GRAY2BGR)
+
+    for i in range(count):
+        image = source.copy()
+        x2, y2 = -1, -1
+        x0, y0, x1, y1 = 0., 0., 0., 0.
+        while not (0 <= x2 < width and 0 <= y2 < height):
+            x0, y0 = generate_point(width, height, random)
+            x1, y1 = generate_point(width, height, random)
+            dx, dy = x1 - x0, y1 - y0
+            xM, yM = (x0 + x1) / 2, (y0 + y1) / 2
+            norm = (dx * dx + dy * dy)**0.5
+            print(dx, dy, (dx * dx + dy * dy)**2, norm)
+            dx /= norm
+            dy /= norm
+            print(dx, dy, (dx * dx + dy * dy)**2, norm)
+            print('')
+            mult = norm * (3.0 ** 0.5) * 0.5
+            x2 = np.float32(xM + dy * mult)
+            y2 = np.float32(yM - dx * mult)
         image = cv2.line(image, (x0, y0), (x1, y1), COLOR_WHITE)
         image = cv2.line(image, (x2, y2), (x1, y1), COLOR_WHITE)
         yield cv2.line(image, (x0, y0), (x2, y2), COLOR_WHITE,
@@ -192,7 +223,8 @@ def main():
         ('rectangles', generate_rectangles),
         ('squares', generate_squares),
         ('right-triangles', generate_right_triangles),
-        ('isosceles_triangles', generate_isosceles_triangles),
+        ('isosceles-triangles', generate_isosceles_triangles),
+        ('equilateral-triangles', generate_equilateral_triangles)
     ]
 
     for sub_path, generator in shapes:
