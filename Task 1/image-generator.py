@@ -16,6 +16,12 @@ def generate_circle_coords(width, height, random, padding=1):
     return center_x, center_y, radius
 
 
+def generate_ellipse_coords(width, height, random, padding=1):
+    x, y, ra = generate_circle_coords(width, height, random, padding)
+    rb = np.float32(random.uniform(ra / 2, ra - 1.0))
+    return x, y, ra, rb
+
+
 def generate_circles(width, height, count=1, seed=None):
     random = Random()
     random.seed(seed)
@@ -27,6 +33,21 @@ def generate_circles(width, height, count=1, seed=None):
         image = source.copy()
         x, y, r = generate_circle_coords(width, height, random)
         yield cv2.circle(image, (x, y), r, (255, 255, 255))
+
+
+def generate_ellipses(width, height, count=1, seed=None):
+    random = Random()
+    random.seed(seed)
+
+    matrix = np.zeros((height, width), np.float32)
+    source = cv2.cvtColor(matrix, cv2.COLOR_GRAY2BGR)
+
+    for i in range(count):
+        image = source.copy()
+        x, y, ra, rb = generate_ellipse_coords(width, height, random)
+        angle = random.randint(0, 360)
+        color = (255, 255, 255)
+        yield cv2.ellipse(image, (x, y), (ra, rb), angle, 0, 360, color)
 
 
 def save_shapes(path, generator):
@@ -45,6 +66,7 @@ def main():
 
     shapes = [
         ('circles', generate_circles(width, heigth, samples_per_type, 42)),
+        ('ellipses', generate_ellipses(width, heigth, samples_per_type, 42)),
     ]
 
     for sub_path, generator in shapes:
