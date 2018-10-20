@@ -13,6 +13,13 @@ def is_circle(image):
     return np.std(dists) < 1
 
 
+def is_line(image):
+    pixels = np.vstack(image.nonzero()).transpose().astype(np.float32)
+    mean, eigenvectors = cv2.PCACompute(pixels, mean=None)
+    projects = cv2.PCAProject(pixels, mean, eigenvectors)
+    return np.std(projects, axis=0)[1] < 1
+
+
 def main():
     path = 'images'
 
@@ -30,6 +37,7 @@ def main():
 
     detectors = [
         ('Circle', is_circle),
+        ('Line', is_line),
     ]
 
     for shape in shapes:
