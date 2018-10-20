@@ -20,6 +20,39 @@ def is_line(image):
     return np.std(projects, axis=0)[1] < 1
 
 
+def bfs(i, j, image, visited):
+    visited[i][j] = True
+    deltas = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+    queue = [(i, j)]
+    while queue:
+        x, y = queue.pop(0)
+        for dx, dy in deltas:
+            v, u = x + dx, y + dy
+            if (
+                0 <= v < image.shape[0] and
+                0 <= u < image.shape[1] and
+                not visited[v][u] and
+                image[v][u] == 0
+            ):
+                visited[v][u] = True
+                queue.append((v, u))
+
+
+def is_broken_line(image):
+    marked = False
+    visited = np.zeros_like(image)
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
+            if image[i][j] > 0.0:
+                continue
+            if not marked:
+                bfs(i, j, image, visited)
+                marked = True
+            elif not visited[i][j]:
+                return False
+    return not is_line(image)
+
+
 def main():
     path = 'images'
 
@@ -38,6 +71,7 @@ def main():
     detectors = [
         ('Circle', is_circle),
         ('Line', is_line),
+        ('Broken line', is_broken_line),
     ]
 
     for shape in shapes:
