@@ -187,11 +187,8 @@ def generate_equilateral_triangles(width, height, count=1, seed=None):
             dx, dy = x1 - x0, y1 - y0
             xM, yM = (x0 + x1) / 2, (y0 + y1) / 2
             norm = (dx * dx + dy * dy)**0.5
-            print(dx, dy, (dx * dx + dy * dy)**2, norm)
             dx /= norm
             dy /= norm
-            print(dx, dy, (dx * dx + dy * dy)**2, norm)
-            print('')
             mult = norm * (3.0 ** 0.5) * 0.5
             x2 = np.float32(xM + dy * mult)
             y2 = np.float32(yM - dx * mult)
@@ -224,7 +221,7 @@ def main():
         ('squares', generate_squares),
         ('right-triangles', generate_right_triangles),
         ('isosceles-triangles', generate_isosceles_triangles),
-        ('equilateral-triangles', generate_equilateral_triangles)
+        ('equilateral-triangles', generate_equilateral_triangles),
     ]
 
     for sub_path, generator in shapes:
