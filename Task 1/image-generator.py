@@ -6,6 +6,12 @@ import cv2
 import numpy as np
 
 
+def generate_point(width, height, random):
+    x = np.float32(random.uniform(0, width))
+    y = np.float32(random.uniform(0, height))
+    return x, y
+
+
 def generate_circle_coords(width, height, random, padding=1):
     upper_radius = min(width, height) / 2
     radius = np.float32(random.uniform(10.0, upper_radius))
@@ -50,6 +56,36 @@ def generate_ellipses(width, height, count=1, seed=None):
         yield cv2.ellipse(image, (x, y), (ra, rb), angle, 0, 360, color)
 
 
+def generate_broken_lines(width, height, count=1, seed=None):
+    random = Random()
+    random.seed(seed)
+
+    matrix = np.zeros((height, width), np.float32)
+    source = cv2.cvtColor(matrix, cv2.COLOR_GRAY2BGR)
+
+    for i in range(count):
+        image = source.copy()
+        start = generate_point(width, height, random)
+        mid = generate_point(width, height, random)
+        end = generate_point(width, height, random)
+        image = cv2.line(image, start, mid, (255, 255, 255))
+        yield cv2.line(image, mid, end, (255, 255, 255))
+
+
+def generate_lines(width, height, count=1, seed=None):
+    random = Random()
+    random.seed(seed)
+
+    matrix = np.zeros((height, width), np.float32)
+    source = cv2.cvtColor(matrix, cv2.COLOR_GRAY2BGR)
+
+    for i in range(count):
+        image = source.copy()
+        start = generate_point(width, height, random)
+        end = generate_point(width, height, random)
+        yield cv2.line(image, start, end, (255, 255, 255))
+
+
 def save_shapes(path, generator):
 
     if not os.path.exists(path):
@@ -65,12 +101,15 @@ def main():
     width, heigth = 200, 200
 
     shapes = [
-        ('circles', generate_circles(width, heigth, samples_per_type, 42)),
-        ('ellipses', generate_ellipses(width, heigth, samples_per_type, 42)),
+        ('circles', generate_circles),
+        ('ellipses', generate_ellipses),
+        ('lines', generate_lines),
+        ('broken-lines', generate_broken_lines),
     ]
 
     for sub_path, generator in shapes:
-        save_shapes(os.path.join(path, sub_path), generator)
+        save_shapes(os.path.join(path, sub_path),
+                    generator(width, heigth, samples_per_type, 100))
 
 
 if __name__ == '__main__':
