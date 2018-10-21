@@ -230,17 +230,17 @@ def main():
     width, heigth = 200, 200
 
     shapes = [
-        # ('circles', generate_circles),
-        # ('ellipses', generate_ellipses),
-        # ('lines', generate_lines),
-        # ('broken-lines', generate_broken_lines),
-        # ('rectangles', generate_rectangles),
+        ('circles', generate_circles),
+        ('ellipses', generate_ellipses),
+        ('lines', generate_lines),
+        ('broken-lines', generate_broken_lines),
+        ('rectangles', generate_rectangles),
         ('rotated-rectangles', get_rotated(generate_rectangles, 42)),
-        # ('squares', generate_squares),
-        ('rotated-squares', get_rotated(generate_squares, 1)),
-        # ('right-triangles', generate_right_triangles),
-        # ('isosceles-triangles', generate_isosceles_triangles),
-        # ('equilateral-triangles', generate_equilateral_triangles),
+        ('squares', generate_squares),
+        ('rotated-squares', get_rotated(generate_squares, 31)),
+        ('right-triangles', generate_right_triangles),
+        ('isosceles-triangles', generate_isosceles_triangles),
+        ('equilateral-triangles', generate_equilateral_triangles),
     ]
 
     for sub_path, generator in shapes:

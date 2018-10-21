@@ -269,6 +269,7 @@ def main():
         'right-triangles',
         'isosceles-triangles',
         'equilateral-triangles',
+        'rotated-squares',
     ]
 
     detectors = [
