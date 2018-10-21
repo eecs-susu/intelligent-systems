@@ -1,4 +1,6 @@
+import math
 import os
+import sys
 
 import cv2
 import numpy as np
@@ -10,16 +12,35 @@ class Line(object):
         self.b = b
         self.c = c
         self._norm = (a**2 + b**2) ** 0.5
+        self._const_arg = None
+        self._const_val = None
 
     @classmethod
     def from_coords(cls, x0, y0, x1, y1):
-        return cls(1.0/(x1 - x0), 1.0/(y0 - y1), y0/(y1 - y0) - x0/(x1 - x0))
+        dx = x1 - x0
+        dy = y1 - y0
+        if abs(dx) < 1e-6:
+            line = cls(1, 1, 1)
+            line._const_arg = (x0 + x1) / 2
+        elif abs(dy) < 1e-6:
+            line = cls(1, 1, 1)
+            line._const_val = (y0 + y1) / 2
+        else:
+            line = cls(1.0/(dx), 1.0/(-dy), y0/(dy) - x0/(dx))
+        return line
 
     def dist_to(self, x, y):
+        if self._const_arg is not None:
+            return abs(x - self._const_arg)
+        if self._const_val is not None:
+            return abs(y - self._const_val)
         return abs(self.a * x + self.b * y + self.c) / self._norm
 
 
 def is_circle(image):
+    if have_solid_field(image):
+        return False
+
     pixels = np.vstack(image.nonzero()).transpose()
 
     def get_max_dist(pt):
@@ -217,6 +238,31 @@ def is_square(image):
     return is_rectangle(image, True)
 
 
+def is_ellipse(image):
+    if have_solid_field(image):
+        return False
+
+    c, da, db = parse_triangle_corners(image)
+    line = Line.from_coords(*da, *db)
+    b = int(round(line.dist_to(*c)))
+    center = (da + db) / 2
+    a = int(round(get_dist(da, center)))
+    center = tuple(center[::-1].astype(np.int))
+    axes = (a, b)
+    line = Line.from_coords(*(da[::-1]), *(db[::-1]))
+    tg = -line.a/line.b
+    ang = int(round(180 + math.atan(tg)*180/math.pi)) % 180
+
+    grid = image.copy()
+    grid = cv2.ellipse(grid, center, axes, ang, 0, 360, 0, 2)
+
+    pts_number = image.nonzero()[0].shape[0]
+    left_number = grid.nonzero()[0].shape[0]
+
+    ratio = left_number / pts_number
+    return ratio < 0.4
+
+
 def main():
     path = 'images'
 
@@ -242,6 +288,7 @@ def main():
         ('Isosceles triangle', is_isosceles_triangle),
         ('Rectangle', is_rectangle),
         ('Square', is_square),
+        ('Ellipse', is_ellipse),
     ]
 
     for shape in shapes:
