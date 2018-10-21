@@ -1,0 +1,23 @@
+language: python
+sudo: false
+python:
+  - "3.7"
+jobs:  
+  include:
+    - stage: "Preparation"
+      name: "Preparation"
+      script: . ./prep.sh
+    - stage: "Style"             
+      name: "Style check"        
+      script: 
+        - . ./venv/bin/activate
+        - pycodestyle **/*.py
+        - deactivate
+    - stage: "Build"
+      name: "Build check"
+      script:
+        - . ./venv/bin/activate
+        - cd Task\ 1
+        - . ./build.sh
+        - cd ..
+        - deactivate
