@@ -11,6 +11,7 @@ declare -a arr=(
     "images/right-triangles/2.bmp"
     "images/right-triangles/9.bmp"
     "images/right-triangles/7.bmp"
+    "images/right-triangles/3.bmp"
     )
 
 for i in "${arr[@]}"
