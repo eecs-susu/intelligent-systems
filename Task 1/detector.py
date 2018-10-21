@@ -88,17 +88,21 @@ def get_diameter_points(image):
     return pixels[dists[0][0]], pixels[dists[0][1][0]]
 
 
-def is_triangle(image):
-    if have_solid_field(image):
-        return False
-
+def parse_triangle_corners(image):
     s, e = get_diameter_points(image)
     x0, y0 = s
     x1, y1 = e
     line = Line.from_coords(x0, y0, x1, y1)
     points = np.vstack(image.nonzero()).transpose().astype(np.float32)
     amx = np.argmax([line.dist_to(x, y) for x, y in points])
-    corner_points = [points[amx], s, e]
+    return points[amx], s, e
+
+
+def is_triangle(image):
+    if have_solid_field(image):
+        return False
+
+    corner_points = parse_triangle_corners(image)
     triangle_points = [tuple(pt[::-1]) for pt in corner_points]
 
     grid = image.copy()
@@ -106,10 +110,26 @@ def is_triangle(image):
         neig = triangle_points[(i + 1) % 3]
         grid = cv2.line(grid, pt, neig, 0, np.float32(2.5))
 
+    points = np.vstack(image.nonzero()).transpose().astype(np.float32)
     new_points = np.vstack(grid.nonzero()).transpose().astype(np.float32)
 
     ratio = len(new_points) / len(points)
     return ratio < 0.05
+
+
+def is_right_triangle(image):
+    if not is_triangle(image):
+        return False
+
+    corner_points = parse_triangle_corners(image)
+    segments = []
+    for i, corner in enumerate(corner_points):
+        neig = corner_points[(i + 1) % 3]
+        dist = np.linalg.norm(corner - neig)
+        segments.append(dist)
+    segments = sorted(segments)
+    expected = (segments[0] ** 2 + segments[1] ** 2) ** 0.5
+    return abs(expected - segments[2]) < 10
 
 
 def main():
@@ -132,6 +152,7 @@ def main():
         ('Line', is_line),
         ('Broken line', is_broken_line),
         ('Triangle', is_triangle),
+        ('Right triangle', is_right_triangle),
     ]
 
     for shape in shapes:
