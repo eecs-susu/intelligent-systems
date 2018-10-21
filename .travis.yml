@@ -17,6 +17,6 @@ jobs:
         - . ./prep.sh
         - . ./venv/bin/activate
         - cd Task\ 1
-        - . ./build.sh
+        - . ./run_test.sh
         - cd ..
         - deactivate
