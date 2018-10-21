@@ -189,16 +189,12 @@ def get_dist(a, b):
 
 
 def is_rectangle(image, only_square=False):
-    diags_coords = [get_diameter_points(image)]
-    line = Line.from_coords(*diags_coords[0][0], *diags_coords[0][1])
-    points = np.vstack(image.nonzero()).transpose().astype(np.float32)
-    amx = np.argmax([line.dist_to(x, y) for x, y in points])
-    a = points[amx]
-    b = points[np.argmax([get_dist(a, p) for p in points])]
-    diags_coords.append((a, b))
+    diag_coord = get_diameter_points(image)
+    grid = cv2.circle(image.copy(), tuple(diag_coord[0][::-1]), 3, 0, -1)
+    grid = cv2.circle(grid, tuple(diag_coord[1][::-1]), 3, 0, -1)
+    diags_coords = [diag_coord, get_diameter_points(grid)]
     std = np.std([get_dist(*diags_coords[0]), get_dist(*diags_coords[1])])
-    # print(std)
-    if std > 0.4:
+    if std > 0.65:
         return False
 
     edges = [
@@ -213,19 +209,20 @@ def is_rectangle(image, only_square=False):
     else:
         std = np.std([get_dist(*edges[0]), get_dist(*edges[3])])
         std = max(std, np.std([get_dist(*edges[1]), get_dist(*edges[2])]))
-    # print(std)
-    if std > 1.2:
+
+    if std > 1.6:
         return False
 
     pts_number = image.nonzero()[0].shape[0]
     found_pts_number = 0
+    grid = image.copy()
     for edge in edges:
-        grid = image.copy()
         pts = [tuple(pt[::-1]) for pt in edge]
-        grid = cv2.line(grid, *pts, 0, 2)
-        found_pts_number += pts_number - grid.nonzero()[0].shape[0]
+        grid = cv2.line(grid, *pts, 0, 3)
+        rest = pts_number - found_pts_number
+        found_pts_number += rest - grid.nonzero()[0].shape[0]
     diff = abs(pts_number - found_pts_number)
-    print(diff)
+
     return diff < 10
 
 
@@ -262,29 +259,29 @@ def main():
     path = 'images'
 
     shapes = [
-        # 'circles',
-        # 'ellipses',
-        # 'lines',
-        # 'broken-lines',
-        # 'rectangles',
+        'circles',
+        'ellipses',
+        'lines',
+        'broken-lines',
+        'rectangles',
         'rotated-rectangles',
-        # 'squares',
-        # 'right-triangles',
-        # 'isosceles-triangles',
-        # 'equilateral-triangles',
+        'squares',
+        'right-triangles',
+        'isosceles-triangles',
+        'equilateral-triangles',
     ]
 
     detectors = [
-        # ('Circle', is_circle),
-        # ('Line', is_line),
-        # ('Broken line', is_broken_line),
-        # ('Triangle', is_triangle),
-        # ('Right triangle', is_right_triangle),
-        # ('Equilateral triangle', is_equilateral_triangle),
-        # ('Isosceles triangle', is_isosceles_triangle),
+        ('Circle', is_circle),
+        ('Line', is_line),
+        ('Broken line', is_broken_line),
+        ('Triangle', is_triangle),
+        ('Right triangle', is_right_triangle),
+        ('Equilateral triangle', is_equilateral_triangle),
+        ('Isosceles triangle', is_isosceles_triangle),
         ('Rectangle', is_rectangle),
-        # ('Square', is_square),
-        # ('Ellipse', is_ellipse),
+        ('Square', is_square),
+        ('Ellipse', is_ellipse),
     ]
 
     for shape in shapes:
