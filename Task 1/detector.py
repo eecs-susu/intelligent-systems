@@ -167,24 +167,24 @@ def main():
     path = 'images'
 
     shapes = [
-        # 'circles',
-        # 'ellipses',
-        # 'lines',
-        # 'broken-lines',
-        # 'rectangles',
-        # 'squares',
-        # 'right-triangles',
+        'circles',
+        'ellipses',
+        'lines',
+        'broken-lines',
+        'rectangles',
+        'squares',
+        'right-triangles',
         'isosceles-triangles',
         'equilateral-triangles',
     ]
 
     detectors = [
-        # ('Circle', is_circle),
-        # ('Line', is_line),
-        # ('Broken line', is_broken_line),
-        # ('Triangle', is_triangle),
-        # ('Right triangle', is_right_triangle),
-        # ('Equilateral triangle', is_equilateral_triangles),
+        ('Circle', is_circle),
+        ('Line', is_line),
+        ('Broken line', is_broken_line),
+        ('Triangle', is_triangle),
+        ('Right triangle', is_right_triangle),
+        ('Equilateral triangle', is_equilateral_triangles),
         ('Isosceles triangle', is_isosceles_triangles),
     ]
 
