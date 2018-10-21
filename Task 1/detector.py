@@ -101,24 +101,12 @@ def get_max_dist(point, points):
     return argmax, dists[argmax]
 
 
-def get_diameter_points(image, n=1):
+def get_diameter_points(image):
     pixels = np.vstack(image.nonzero()).transpose().astype(np.float32)
     dists = [(i, get_max_dist(point, pixels))
              for i, point in enumerate(pixels)]
     dists = sorted(dists, key=lambda e: -e[1][1])
-    if n == 1:
-        return pixels[dists[0][0]], pixels[dists[0][1][0]]
-    answers = []
-    visited = set()
-    for dist in dists:
-        if len(answers) == n:
-            break
-        if dist[0] not in visited:
-            a, b = pixels[dist[0]], pixels[dist[1][0]]
-            visited.add(dist[0])
-            visited.add(dist[1][0])
-            answers.append((a, b))
-    return answers
+    return pixels[dists[0][0]], pixels[dists[0][1][0]]
 
 
 def parse_triangle_corners(image):
@@ -201,9 +189,15 @@ def get_dist(a, b):
 
 
 def is_rectangle(image, only_square=False):
-    diags_coords = get_diameter_points(image, 2)
+    diags_coords = [get_diameter_points(image)]
+    line = Line.from_coords(*diags_coords[0][0], *diags_coords[0][1])
+    points = np.vstack(image.nonzero()).transpose().astype(np.float32)
+    amx = np.argmax([line.dist_to(x, y) for x, y in points])
+    a = points[amx]
+    b = points[np.argmax([get_dist(a, p) for p in points])]
+    diags_coords.append((a, b))
     std = np.std([get_dist(*diags_coords[0]), get_dist(*diags_coords[1])])
-
+    # print(std)
     if std > 0.4:
         return False
 
@@ -219,8 +213,8 @@ def is_rectangle(image, only_square=False):
     else:
         std = np.std([get_dist(*edges[0]), get_dist(*edges[3])])
         std = max(std, np.std([get_dist(*edges[1]), get_dist(*edges[2])]))
-
-    if std > 0.4:
+    # print(std)
+    if std > 1.2:
         return False
 
     pts_number = image.nonzero()[0].shape[0]
@@ -228,9 +222,10 @@ def is_rectangle(image, only_square=False):
     for edge in edges:
         grid = image.copy()
         pts = [tuple(pt[::-1]) for pt in edge]
-        grid = cv2.line(grid, *pts, 0)
+        grid = cv2.line(grid, *pts, 0, 2)
         found_pts_number += pts_number - grid.nonzero()[0].shape[0]
     diff = abs(pts_number - found_pts_number)
+    print(diff)
     return diff < 10
 
 
@@ -267,28 +262,29 @@ def main():
     path = 'images'
 
     shapes = [
-        'circles',
-        'ellipses',
-        'lines',
-        'broken-lines',
-        'rectangles',
-        'squares',
-        'right-triangles',
-        'isosceles-triangles',
-        'equilateral-triangles',
+        # 'circles',
+        # 'ellipses',
+        # 'lines',
+        # 'broken-lines',
+        # 'rectangles',
+        'rotated-rectangles',
+        # 'squares',
+        # 'right-triangles',
+        # 'isosceles-triangles',
+        # 'equilateral-triangles',
     ]
 
     detectors = [
-        ('Circle', is_circle),
-        ('Line', is_line),
-        ('Broken line', is_broken_line),
-        ('Triangle', is_triangle),
-        ('Right triangle', is_right_triangle),
-        ('Equilateral triangle', is_equilateral_triangle),
-        ('Isosceles triangle', is_isosceles_triangle),
+        # ('Circle', is_circle),
+        # ('Line', is_line),
+        # ('Broken line', is_broken_line),
+        # ('Triangle', is_triangle),
+        # ('Right triangle', is_right_triangle),
+        # ('Equilateral triangle', is_equilateral_triangle),
+        # ('Isosceles triangle', is_isosceles_triangle),
         ('Rectangle', is_rectangle),
-        ('Square', is_square),
-        ('Ellipse', is_ellipse),
+        # ('Square', is_square),
+        # ('Ellipse', is_ellipse),
     ]
 
     for shape in shapes:
