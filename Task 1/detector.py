@@ -80,12 +80,24 @@ def get_max_dist(point, points):
     return argmax, dists[argmax]
 
 
-def get_diameter_points(image):
+def get_diameter_points(image, n=1):
     pixels = np.vstack(image.nonzero()).transpose().astype(np.float32)
     dists = [(i, get_max_dist(point, pixels))
              for i, point in enumerate(pixels)]
     dists = sorted(dists, key=lambda e: -e[1][1])
-    return pixels[dists[0][0]], pixels[dists[0][1][0]]
+    if n == 1:
+        return pixels[dists[0][0]], pixels[dists[0][1][0]]
+    answers = []
+    visited = set()
+    for dist in dists:
+        if len(answers) == n:
+            break
+        if dist[0] not in visited:
+            a, b = pixels[dist[0]], pixels[dist[1][0]]
+            visited.add(dist[0])
+            visited.add(dist[1][0])
+            answers.append((a, b))
+    return answers
 
 
 def parse_triangle_corners(image):
@@ -132,7 +144,7 @@ def is_right_triangle(image):
     return abs(expected - segments[2]) < 10
 
 
-def is_equilateral_triangles(image):
+def is_equilateral_triangle(image):
     if not is_triangle(image):
         return False
 
@@ -146,7 +158,7 @@ def is_equilateral_triangles(image):
     return std < 0.5
 
 
-def is_isosceles_triangles(image):
+def is_isosceles_triangle(image):
     if not is_triangle(image):
         return False
 
@@ -161,6 +173,48 @@ def is_isosceles_triangles(image):
         combinations.append((segment, segments[(i + 1) % 3]))
     possibilities = [np.std(combination) for combination in combinations]
     return any(np.array(possibilities) < 0.6)
+
+
+def get_dist(a, b):
+    return np.linalg.norm(a - b)
+
+
+def is_rectangle(image, only_square=False):
+    diags_coords = get_diameter_points(image, 2)
+    std = np.std([get_dist(*diags_coords[0]), get_dist(*diags_coords[1])])
+
+    if std > 0.4:
+        return False
+
+    edges = [
+        [diags_coords[0][0], diags_coords[1][0]],
+        [diags_coords[0][0], diags_coords[1][1]],
+        [diags_coords[0][1], diags_coords[1][0]],
+        [diags_coords[0][1], diags_coords[1][1]],
+    ]
+
+    if only_square:
+        std = np.std([get_dist(*edge) for edge in edges])
+    else:
+        std = np.std([get_dist(*edges[0]), get_dist(*edges[3])])
+        std = max(std, np.std([get_dist(*edges[1]), get_dist(*edges[2])]))
+
+    if std > 0.4:
+        return False
+
+    pts_number = image.nonzero()[0].shape[0]
+    found_pts_number = 0
+    for edge in edges:
+        grid = image.copy()
+        pts = [tuple(pt[::-1]) for pt in edge]
+        grid = cv2.line(grid, *pts, 0)
+        found_pts_number += pts_number - grid.nonzero()[0].shape[0]
+    diff = abs(pts_number - found_pts_number)
+    return diff < 10
+
+
+def is_square(image):
+    return is_rectangle(image, True)
 
 
 def main():
@@ -184,8 +238,10 @@ def main():
         ('Broken line', is_broken_line),
         ('Triangle', is_triangle),
         ('Right triangle', is_right_triangle),
-        ('Equilateral triangle', is_equilateral_triangles),
-        ('Isosceles triangle', is_isosceles_triangles),
+        ('Equilateral triangle', is_equilateral_triangle),
+        ('Isosceles triangle', is_isosceles_triangle),
+        ('Rectangle', is_rectangle),
+        ('Square', is_square),
     ]
 
     for shape in shapes:
