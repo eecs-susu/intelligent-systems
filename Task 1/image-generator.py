@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from random import Random
@@ -225,8 +226,12 @@ def save_shapes(path, generator):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("samples", type=int)
+    args = parser.parse_args()
+
     path = 'images'
-    samples_per_type = 10
+    samples_per_type = args.samples
     width, heigth = 200, 200
 
     shapes = [
