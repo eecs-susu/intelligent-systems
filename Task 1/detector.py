@@ -132,6 +132,20 @@ def is_right_triangle(image):
     return abs(expected - segments[2]) < 10
 
 
+def is_equilateral_triangles(image):
+    if not is_triangle(image):
+        return False
+
+    corner_points = parse_triangle_corners(image)
+    segments = []
+    for i, corner in enumerate(corner_points):
+        neig = corner_points[(i + 1) % 3]
+        dist = np.linalg.norm(corner - neig)
+        segments.append(dist)
+    std = np.std(segments - np.mean(segments))
+    return std < 0.5
+
+
 def main():
     path = 'images'
 
@@ -153,6 +167,7 @@ def main():
         ('Broken line', is_broken_line),
         ('Triangle', is_triangle),
         ('Right triangle', is_right_triangle),
+        ('Equilateral triangle', is_equilateral_triangles),
     ]
 
     for shape in shapes:
