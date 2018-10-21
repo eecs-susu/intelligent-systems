@@ -146,28 +146,46 @@ def is_equilateral_triangles(image):
     return std < 0.5
 
 
+def is_isosceles_triangles(image):
+    if not is_triangle(image):
+        return False
+
+    corner_points = parse_triangle_corners(image)
+    segments = []
+    for i, corner in enumerate(corner_points):
+        neig = corner_points[(i + 1) % 3]
+        dist = np.linalg.norm(corner - neig)
+        segments.append(dist)
+    combinations = []
+    for i, segment in enumerate(segments):
+        combinations.append((segment, segments[(i + 1) % 3]))
+    possibilities = [np.std(combination) for combination in combinations]
+    return any(np.array(possibilities) < 0.6)
+
+
 def main():
     path = 'images'
 
     shapes = [
-        'circles',
-        'ellipses',
-        'lines',
-        'broken-lines',
-        'rectangles',
-        'squares',
-        'right-triangles',
+        # 'circles',
+        # 'ellipses',
+        # 'lines',
+        # 'broken-lines',
+        # 'rectangles',
+        # 'squares',
+        # 'right-triangles',
         'isosceles-triangles',
         'equilateral-triangles',
     ]
 
     detectors = [
-        ('Circle', is_circle),
-        ('Line', is_line),
-        ('Broken line', is_broken_line),
-        ('Triangle', is_triangle),
-        ('Right triangle', is_right_triangle),
-        ('Equilateral triangle', is_equilateral_triangles),
+        # ('Circle', is_circle),
+        # ('Line', is_line),
+        # ('Broken line', is_broken_line),
+        # ('Triangle', is_triangle),
+        # ('Right triangle', is_right_triangle),
+        # ('Equilateral triangle', is_equilateral_triangles),
+        ('Isosceles triangle', is_isosceles_triangles),
     ]
 
     for shape in shapes:
