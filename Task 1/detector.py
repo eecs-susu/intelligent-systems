@@ -4,6 +4,21 @@ import cv2
 import numpy as np
 
 
+class Line(object):
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+        self._norm = (a**2 + b**2) ** 0.5
+
+    @classmethod
+    def from_coords(cls, x0, y0, x1, y1):
+        return cls(1.0/(x1 - x0), 1.0/(y0 - y1), y0/(y1 - y0) - x0/(x1 - x0))
+
+    def dist_to(self, x, y):
+        return abs(self.a * x + self.b * y + self.c) / self._norm
+
+
 def is_circle(image):
     pixels = np.vstack(image.nonzero()).transpose()
 
@@ -14,6 +29,8 @@ def is_circle(image):
 
 
 def is_line(image):
+    if not have_solid_field(image):
+        return False
     pixels = np.vstack(image.nonzero()).transpose().astype(np.float32)
     mean, eigenvectors = cv2.PCACompute(pixels, mean=None)
     projects = cv2.PCAProject(pixels, mean, eigenvectors)
@@ -38,7 +55,7 @@ def bfs(i, j, image, visited):
                 queue.append((v, u))
 
 
-def is_broken_line(image):
+def have_solid_field(image):
     marked = False
     visited = np.zeros_like(image)
     for i in range(image.shape[0]):
@@ -50,7 +67,49 @@ def is_broken_line(image):
                 marked = True
             elif not visited[i][j]:
                 return False
-    return not is_line(image)
+    return True
+
+
+def is_broken_line(image):
+    return have_solid_field(image) and not is_line(image)
+
+
+def get_max_dist(point, points):
+    dists = [np.linalg.norm(point - p) for p in points]
+    argmax = np.argmax(dists)
+    return argmax, dists[argmax]
+
+
+def get_diameter_points(image):
+    pixels = np.vstack(image.nonzero()).transpose().astype(np.float32)
+    dists = [(i, get_max_dist(point, pixels))
+             for i, point in enumerate(pixels)]
+    dists = sorted(dists, key=lambda e: -e[1][1])
+    return pixels[dists[0][0]], pixels[dists[0][1][0]]
+
+
+def is_triangle(image):
+    if have_solid_field(image):
+        return False
+
+    s, e = get_diameter_points(image)
+    x0, y0 = s
+    x1, y1 = e
+    line = Line.from_coords(x0, y0, x1, y1)
+    points = np.vstack(image.nonzero()).transpose().astype(np.float32)
+    amx = np.argmax([line.dist_to(x, y) for x, y in points])
+    corner_points = [points[amx], s, e]
+    triangle_points = [tuple(pt[::-1]) for pt in corner_points]
+
+    grid = image.copy()
+    for i, pt in enumerate(triangle_points):
+        neig = triangle_points[(i + 1) % 3]
+        grid = cv2.line(grid, pt, neig, 0, np.float32(2.5))
+
+    new_points = np.vstack(grid.nonzero()).transpose().astype(np.float32)
+
+    ratio = len(new_points) / len(points)
+    return ratio < 0.05
 
 
 def main():
@@ -72,6 +131,7 @@ def main():
         ('Circle', is_circle),
         ('Line', is_line),
         ('Broken line', is_broken_line),
+        ('Triangle', is_triangle),
     ]
 
     for shape in shapes:
