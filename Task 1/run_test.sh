@@ -1,4 +1,4 @@
 #!/bin/bash
-python image-generator.py 10
-. ./remove_bad_samples.sh
+rm -rf images
+python image-generator.py 1
 python detector.py
