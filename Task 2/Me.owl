@@ -1,0 +1,803 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#"
+     xml:base="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-3="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Contains">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Ignites -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Ignites">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pushes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pushes">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Rotates -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Rotates">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Stabilizes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Stabilizes">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressionRatio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressionRatio">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Consumption -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Consumption">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EnergyEfficiency -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EnergyEfficiency">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#OctaneNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#OctaneNumber">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PowerToWeightRatio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PowerToWeightRatio">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ThrustToWeightRatio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ThrustToWeightRatio">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TorqueCurves -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TorqueCurves">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Efficiency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Volume -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Volume"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#AirCooling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#AirCooling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cooling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#AtkinsonCycle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#AtkinsonCycle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Autogas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Autogas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biobutanol -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biobutanol">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biodiesel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biodiesel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Bioethanol -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Bioethanol">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biogas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biogas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ClerkCycle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ClerkCycle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TwoStrokeEngine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Coal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Coal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressedNaturalGas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressedNaturalGas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressionIgnitionEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#CompressionIgnitionEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ContinuousCombustion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ContinuousCombustion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#InternalCombustionEngine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cooling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cooling"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#DayCycle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#DayCycle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TwoStrokeEngine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#DimethylEther -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#DimethylEther">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Biofuels"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ElectricStarting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ElectricStarting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FourStrokeEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FourStrokeEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#GasTurbine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#GasTurbine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ContinuousCombustion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Hydrogen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Hydrogen">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#InternalCombustionEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#InternalCombustionEngine"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#JetFuel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#JetFuel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#KickStarting -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#KickStarting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#MillerCycle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#MillerCycle">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PeanutOil -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PeanutOil">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pedaling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pedaling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PetroleumDiesel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PetroleumDiesel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PetroleumSpirit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#PetroleumSpirit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pushing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Pushing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Ramjet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Ramjet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ContinuousCombustion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#InternalCombustionEngine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ResidualFuel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ResidualFuel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Petroleum"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#RocketEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#RocketEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ContinuousCombustion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Rotary -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Rotary">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#InternalCombustionEngine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SixStrokeEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SixStrokeEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkIgnitionEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkIgnitionEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#StartingSystem"/>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turbofan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turbofan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#GasTurbine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turbojet -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turbojet">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#GasTurbine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turboprop -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Turboprop">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#GasTurbine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TwoStrokeEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#TwoStrokeEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Reciprocating"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#WankelEngine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#WankelEngine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Rotary"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#WaterCooling -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#WaterCooling">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cooling"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Woodgas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Woodgas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#EngineSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crankshaft"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_1"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_2"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_3"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_4"/>
+        <Rotates rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_1"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_1"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_3"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_4"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Engine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Engine">
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_1"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_2"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_3"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Cylinder_4"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#ExhaustSystem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Flywheel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#FuelSystem"/>
+        <Contains rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Oil"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Piston"/>
+        <Pushes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <Ignites rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <Ignites rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <Ignites rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug_4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#SparkPlug"/>
+        <Ignites rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Fuel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight">
+        <rdf:type rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Сounterweight"/>
+        <Stabilizes rdf:resource="http://www.semanticweb.org/alkapov/ontologies/2018/10/untitled-ontology-3#Crancshaft"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+
